@@ -37,9 +37,9 @@ func loadPageFromDirectory(directory, title string) (*Page, error) {
 		return nil, err
 	}
 
-	htmlContent := blackfriday.Run(body)
+	// htmlContent := blackfriday.Run(body)
 
-	return &Page{Title: title, Body: htmlContent}, nil
+	return &Page{Title: title, Body: body}, nil
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
@@ -66,6 +66,7 @@ func editHandler(w http.ResponseWriter, r *http.Request, title string) {
 	if err != nil {
 		p = &Page{Title: title}
 	}
+
 	renderTemplate(w, "edit", p)
 }
 
@@ -101,6 +102,29 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
+
+// func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
+// 	// Check if the template is "edit"
+// 	isEditTemplate := tmpl == "edit"
+
+// 	// Execute the template, applying the "markDown" function only if not editing
+// 	var err error
+// 	if isEditTemplate {
+// 		err = templates.ExecuteTemplate(w, tmpl+".html", p)
+// 	} else {
+// 		err = templates.ExecuteTemplate(w, tmpl+".html", struct {
+// 			Title string
+// 			Body  template.HTML
+// 		}{
+// 			Title: p.Title,
+// 			Body:  template.HTML(p.Body),
+// 		})
+// 	}
+
+// 	if err != nil {
+// 		http.Error(w, err.Error(), http.StatusInternalServerError)
+// 	}
+// }
 
 var validPath = regexp.MustCompile("^/(edit|save|site)/([a-zA-Z0-9]+)$")
 
