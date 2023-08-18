@@ -7,6 +7,10 @@ body {
     max-width: 624px;
 }
 
+a:hover {
+    background-color: #3E577C;
+    color: #fff;
+}
 
 img {
     max-width:100%;
@@ -38,3 +42,23 @@ nav {
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
 }
+
+h1 {
+    text-transform: capitalize;
+
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 8px;
+    justify-content: left;
+    margin-bottom: 4px;
+  }
+  
+  .portfolio-item {
+    border: 1px solid #3E577C;
+    padding: 6px 6px 3px;
+    position: relative;
+    z-index: 0;
+  }

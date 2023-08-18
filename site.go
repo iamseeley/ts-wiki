@@ -21,15 +21,6 @@ func (p *Page) save(dir string) error {
 	return os.WriteFile(filename, p.Body, 0600)
 }
 
-// func loadPage(title string) (*Page, error) {
-// 	filename := title + ".txt"
-// 	body, err := os.ReadFile(filename)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-// 	return &Page{Title: title, Body: body}, nil
-// }
-
 func loadPageFromDirectory(directory, title string) (*Page, error) {
 	filename := directory + title + ".md"
 	body, err := os.ReadFile(filename)
@@ -37,13 +28,11 @@ func loadPageFromDirectory(directory, title string) (*Page, error) {
 		return nil, err
 	}
 
-	// htmlContent := blackfriday.Run(body)
-
 	return &Page{Title: title, Body: body}, nil
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
-	p, err := loadPageFromDirectory("data/", title)
+	p, err := loadPageFromDirectory("pages/", title)
 	if err != nil {
 		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
 		return
@@ -52,34 +41,25 @@ func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
 	renderTemplate(w, "site", p)
 }
 
-// func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
-// 	p, err := loadPage(title)
+// func editHandler(w http.ResponseWriter, r *http.Request, title string) {
+// 	p, err := loadPageFromDirectory("data/", title)
 // 	if err != nil {
-// 		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
-// 		return
+// 		p = &Page{Title: title}
 // 	}
-// 	renderTemplate(w, "site", p)
+
+// 	renderTemplate(w, "edit", p)
 // }
 
-func editHandler(w http.ResponseWriter, r *http.Request, title string) {
-	p, err := loadPageFromDirectory("data/", title)
-	if err != nil {
-		p = &Page{Title: title}
-	}
-
-	renderTemplate(w, "edit", p)
-}
-
-func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
-	body := r.FormValue("body")
-	p := &Page{Title: title, Body: []byte(body)}
-	err := p.save("data/")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	http.Redirect(w, r, "/site/"+title, http.StatusFound)
-}
+// func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
+// 	body := r.FormValue("body")
+// 	p := &Page{Title: title, Body: []byte(body)}
+// 	err := p.save("data/")
+// 	if err != nil {
+// 		http.Error(w, err.Error(), http.StatusInternalServerError)
+// 		return
+// 	}
+// 	http.Redirect(w, r, "/site/"+title, http.StatusFound)
+// }
 
 func markDowner(args ...interface{}) template.HTML {
 	s := blackfriday.Run([]byte(fmt.Sprintf("%s", args...)))
@@ -95,30 +75,7 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	}
 }
 
-// func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
-// 	// Check if the template is "edit"
-// 	isEditTemplate := tmpl == "edit"
-
-// 	// Execute the template, applying the "markDown" function only if not editing
-// 	var err error
-// 	if isEditTemplate {
-// 		err = templates.ExecuteTemplate(w, tmpl+".html", p)
-// 	} else {
-// 		err = templates.ExecuteTemplate(w, tmpl+".html", struct {
-// 			Title string
-// 			Body  template.HTML
-// 		}{
-// 			Title: p.Title,
-// 			Body:  template.HTML(p.Body),
-// 		})
-// 	}
-
-// 	if err != nil {
-// 		http.Error(w, err.Error(), http.StatusInternalServerError)
-// 	}
-// }
-
-var validPath = regexp.MustCompile("^/(edit|save|site)/([a-zA-Z0-9]+)$")
+var validPath = regexp.MustCompile("^/(site)/([a-zA-Z0-9]+)$")
 
 func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -133,11 +90,12 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
 }
 
 func main() {
+	http.Handle("/", http.RedirectHandler("/site/home", http.StatusSeeOther))
 	fs := http.FileServer(http.Dir("assets"))
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 	http.HandleFunc("/site/", makeHandler(viewHandler))
-	http.HandleFunc("/edit/", makeHandler(editHandler))
-	http.HandleFunc("/save/", makeHandler(saveHandler))
+	// http.HandleFunc("/edit/", makeHandler(editHandler))
+	// http.HandleFunc("/save/", makeHandler(saveHandler))
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
