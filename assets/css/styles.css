@@ -1,10 +1,40 @@
+
+
 body {
-    background-color: beige;
+    background-color: #fff;
+    font-size: 16px;
+    color: #3E577C;
+    max-width: 624px;
 }
 
 
 img {
-    margin: 0 auto;
-    max-width: 400px;
-    height: auto;
+    max-width:100%;
+    display:inline-block;
+    margin:0 0 10px; 
+}
+
+
+ textarea {
+    max-width:100%;
+    display:inline-block;
+    margin:0 0 10px;
+}
+
+navcontainer {
+    top: 0;
+    position: fixed;
+    width: 100vw;
+    z-index: 100;
+}
+
+
+nav {
+    display: grid;
+    grid-template-columns: 2.5em 1fr;
+    padding: 2px 6px 3px;
+    max-width: calc(100vw - 115px);
+    background: rgba(255, 255, 255, 0.9);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
 }

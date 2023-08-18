@@ -6,10 +6,19 @@
     <title>{{.Title}}</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
 </head>
+<header id="navcontainer">
+    <nav>
+        <a href="/site/home">home</a>
+
+
+    </nav>
+</header>
 <body>
     <h1>{{.Title}}</h1>
 
     <article>{{ .Body | markDown }}</article>
+
+    
    
     <p>[<a href="/edit/{{.Title}}">edit</a>]</p>
     

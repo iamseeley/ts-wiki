@@ -88,14 +88,6 @@ func markDowner(args ...interface{}) template.HTML {
 
 var templates = template.Must(template.New("").Funcs(template.FuncMap{"markDown": markDowner}).ParseGlob("templates/*.html"))
 
-// var templates = template.Must(template.ParseGlob("templates/*.html"))
-
-// var templates = template.Must(template.New("").Funcs(template.FuncMap{
-// 	"safeHTML": func(s string) template.HTML {
-// 		return template.HTML(s)
-// 	},
-// }).ParseGlob("templates/*.html"))
-
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	err := templates.ExecuteTemplate(w, tmpl+".html", p)
 	if err != nil {
@@ -135,6 +127,7 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
 			http.NotFound(w, r)
 			return
 		}
+
 		fn(w, r, m[2])
 	}
 }
