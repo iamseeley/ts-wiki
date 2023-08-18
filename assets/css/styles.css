@@ -5,8 +5,15 @@ body {
     font-size: 16px;
     color: #3E577C;
     max-width: 624px;
+    overflow-x: hidden;
 }
 
+a {
+    text-decoration: underline;
+    color: #3E577C;
+  }
+
+  
 a:hover {
     background-color: #3E577C;
     color: #fff;
@@ -44,7 +51,7 @@ nav {
 }
 
 h1 {
-    text-transform: capitalize;
+   
 
 }
 
