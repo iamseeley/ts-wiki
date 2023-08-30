@@ -13,7 +13,8 @@ import (
 
 type Page struct {
 	Title string
-	Body  []byte
+
+	Body []byte
 }
 
 func (p *Page) save(dir string) error {
@@ -34,7 +35,7 @@ func loadPageFromDirectory(directory, title string) (*Page, error) {
 func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
 	p, err := loadPageFromDirectory("pages/", title)
 	if err != nil {
-		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
+		http.Redirect(w, r, "/site/"+title, http.StatusFound)
 		return
 	}
 

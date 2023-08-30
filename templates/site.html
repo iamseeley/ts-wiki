@@ -3,16 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{.Title}}</title>
+    <meta name="description" content="">
+    <title>TS - {{.Title}}</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
 </head>
 <header id="navcontainer">
     <nav>
-        <a href="/site/home">tseeley.com</a>
-        <a href="/site/about">about</a>
-
-
+        <ul>
+            <li><a class="clean" href="/site/home">home</a></li>
+            <li><a class="clean" href="/site/tseeley">tseeley</a></li>
+            <li><a class="clean" href="/site/tseeley">wiki</a></li>
+        </ul>  
+            {{if eq .Title "tseeley"}}
+                <ul>
+                    <li><a class="clean" href="/site/home">inventory</a></li>
+                    <li><a class="clean" href="/site/tseeley">directory</a></li>
+                    <li><a class="clean" href="/site/tseeley">goals</a></li>
+                    <li><a class="clean" href="/site/tseeley">notebook</a></li>
+                </ul>
+            {{else if eq .Title "wiki"}}
+                <ul>
+                    <li><a class="clean" href="/site/home">meta</a></li>
+                    <li><a class="clean" href="/site/tseeley">index</a></li>
+                    <li><a class="clean" href="/site/tseeley">goood</a></li>
+                </ul>
+            {{else}}
+                <ul>
+                    <li><a class="clean" href="/site/home">the wiki</a></li>
+                    <li><a class="clean" href="/site/tseeley">tseelink</a></li>
+                    <li><a class="clean" href="/site/tseeley">yay</a></li>
+                </ul>
+            {{end}}
+        
     </nav>
+    
 </header>
 <body>
     <!-- <h1>{{.Title}}</h1> -->
