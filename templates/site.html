@@ -11,21 +11,21 @@
     <nav>
         <ul>
             <li><a class="clean" href="/site/home">home</a></li>
-            <li><a class="clean" href="/site/tseeley">tseeley</a></li>
-            <li><a class="clean" href="/site/tseeley">wiki</a></li>
+            <li><a class="clean" href="/site/about">about</a></li>
+            <li><a class="clean" href="/site/projects">projects</a></li>
         </ul>  
-            {{if eq .Title "tseeley"}}
+            {{if eq .Title "about"}}
                 <ul>
                     <li><a class="clean" href="/site/home">inventory</a></li>
                     <li><a class="clean" href="/site/tseeley">directory</a></li>
                     <li><a class="clean" href="/site/tseeley">goals</a></li>
                     <li><a class="clean" href="/site/tseeley">notebook</a></li>
                 </ul>
-            {{else if eq .Title "wiki"}}
+            {{else if eq .Title "projects"}}
                 <ul>
-                    <li><a class="clean" href="/site/home">meta</a></li>
-                    <li><a class="clean" href="/site/tseeley">index</a></li>
-                    <li><a class="clean" href="/site/tseeley">goood</a></li>
+                    <li><a class="clean" href="/site/home">web</a></li>
+                    <li><a class="clean" href="/site/tseeley">irl</a></li>
+                    <li><a class="clean" href="/site/tseeley">photography</a></li>
                 </ul>
             {{else}}
                 <ul>

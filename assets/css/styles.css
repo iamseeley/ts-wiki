@@ -51,6 +51,9 @@ img {
     z-index: 100;
 }
 
+nav ul {
+  list-style-type: none;
+}
 
 nav {
     
