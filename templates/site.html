@@ -16,22 +16,28 @@
         </ul>  
             {{if eq .Title "about"}}
                 <ul>
-                    <li><a class="clean" href="/site/home">inventory</a></li>
-                    <li><a class="clean" href="/site/tseeley">directory</a></li>
-                    <li><a class="clean" href="/site/tseeley">goals</a></li>
-                    <li><a class="clean" href="/site/tseeley">notebook</a></li>
+                    <li><a class="clean" href="/site/tseeley">thomas seeley</a></li>
+                    <li><a class="clean" href="/site/tseeley">meta</a></li>
                 </ul>
             {{else if eq .Title "projects"}}
                 <ul>
                     <li><a class="clean" href="/site/home">web</a></li>
-                    <li><a class="clean" href="/site/tseeley">irl</a></li>
+                    <li><a class="clean" href="/site/tseeley">physical</a></li>
                     <li><a class="clean" href="/site/tseeley">photography</a></li>
                 </ul>
-            {{else}}
+            {{else if eq .Title "tseeley"}}
                 <ul>
-                    <li><a class="clean" href="/site/home">the wiki</a></li>
-                    <li><a class="clean" href="/site/tseeley">tseelink</a></li>
-                    <li><a class="clean" href="/site/tseeley">yay</a></li>
+                    <li><a class="clean" href="/site/tseeley">thomas seeley</a></li>
+                    <li><a class="clean" href="/site/tseeley">meta</a></li>
+                </ul>
+                <ul>
+                    <li><a class="clean" href="/site/home">journal</a></li>
+                    <li><a class="clean" href="/site/tseeley">collections</a></li>
+                    <!-- <li><a class="clean" href="/site/tseeley">goals</a></li> -->
+                </ul>
+            {{else if eq .Title "meta"}}
+                <ul>
+                    <li><a class="clean" href="/site/home">index</a></li>
                 </ul>
             {{end}}
         

@@ -1,5 +1,4 @@
-
-# About this wiki.
+# Thomas Seeley
 
 
 
