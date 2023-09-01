@@ -1,15 +1,16 @@
 FROM golang:latest
 
-ADD . /app
-
 WORKDIR /app
 
-RUN go mod download
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
+COPY go.mod go.sum ./
 
-RUN chmod +x ./test-wiki
+RUN go mod download && go mod verify
+
+COPY . .
+
+RUN go build -o /test-wiki
 
 EXPOSE 8080
 
-CMD ./test-wiki
+CMD [ "/test-wiki" ]
