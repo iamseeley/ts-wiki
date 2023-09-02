@@ -9,17 +9,26 @@ body {
 }
 
 a {
-    text-decoration: underline;
+    text-decoration: none;
     color: #3E577C;
   }
 
+  body a.self, body a.parent { font-style:italic }
 /* a:active {
     font-style: italic;
   } */
 
-  a.clean {
-    text-decoration: none;
+  a.under {
+    text-decoration: underline;
   }
+
+div.square {
+  background-color: #3E577C;
+  border: 2px;
+  border-color: gray;
+  padding: 2px;
+  margin-bottom: 30px;
+}
 
   
 a:hover {

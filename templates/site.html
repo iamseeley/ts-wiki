@@ -8,15 +8,17 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
 </head>
 <header id="navcontainer">
+    <div class="square"></div>
+</header>
     <nav>
         <ul>
             <li><a class="clean" href="/site/home">home</a></li>
-            <li><a class="clean" href="/site/about">about</a></li>
+            <li><a {{if or (eq .Title "about") (eq .Title "tseeley")}} class="self"{{end}} href="/site/about">about</a></li>
             <li><a class="clean" href="/site/projects">projects</a></li>
         </ul>  
             {{if eq .Title "about"}}
                 <ul>
-                    <li><a class="clean" href="/site/tseeley">thomas seeley</a></li>
+                    <li><a {{if or (eq .Title "tseeley") (eq .Title "journal") (eq .Title "collections") }} class="self" {{end}} href="/site/tseeley">thomas seeley</a></li>
                     <li><a class="clean" href="/site/tseeley">meta</a></li>
                 </ul>
             {{else if eq .Title "projects"}}
@@ -27,7 +29,7 @@
                 </ul>
             {{else if eq .Title "tseeley"}}
                 <ul>
-                    <li><a class="clean" href="/site/tseeley">thomas seeley</a></li>
+                    <li><a {{if or (eq .Title "about") (eq .Title "tseeley")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a></li>
                     <li><a class="clean" href="/site/tseeley">meta</a></li>
                 </ul>
                 <ul>
@@ -43,7 +45,7 @@
         
     </nav>
     
-</header>
+
 <body>
     <!-- <h1>{{.Title}}</h1> -->
 
