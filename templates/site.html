@@ -12,8 +12,8 @@
 </header>
     <nav>
         <ul>
-            <li><a class="clean" href="/site/home">home</a></li>
-            <li><a {{if or (eq .Title "about") (eq .Title "tseeley")}} class="self"{{end}} href="/site/about">about</a></li>
+            <li><a {{if eq .Title "home"}} class="self" {{end}} href="/site/home">home</a></li>
+            <li><a {{if or (eq .Title "about") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/about">about</a></li>
             <li><a class="clean" href="/site/projects">projects</a></li>
         </ul>  
             {{if eq .Title "about"}}
@@ -33,8 +33,18 @@
                     <li><a class="clean" href="/site/tseeley">meta</a></li>
                 </ul>
                 <ul>
-                    <li><a class="clean" href="/site/home">journal</a></li>
-                    <li><a class="clean" href="/site/tseeley">collections</a></li>
+                    <li><a class="clean" href="/site/journal">journal</a></li>
+                    <li><a class="clean" href="/site/collections">collections</a></li>
+                    <!-- <li><a class="clean" href="/site/tseeley">goals</a></li> -->
+                </ul>
+            {{else if eq .Title "journal"}}
+                <ul>
+                    <li><a {{if or (eq .Title "about") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a></li>
+                    <li><a class="clean" href="/site/tseeley">meta</a></li>
+                </ul>
+                <ul>
+                    <li><a {{if or (eq .Title "journal")}} class="self"{{end}} href="/site/journal">journal</a></li>
+                    <li><a class="clean" href="/site/collections">collections</a></li>
                     <!-- <li><a class="clean" href="/site/tseeley">goals</a></li> -->
                 </ul>
             {{else if eq .Title "meta"}}

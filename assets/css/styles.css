@@ -23,7 +23,10 @@ a {
   }
 
 div.square {
+  width: 4px;
+  height: 4px;
   background-color: #3E577C;
+
   border: 2px;
   border-color: gray;
   padding: 2px;
