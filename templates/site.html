@@ -13,10 +13,10 @@
     <nav>
         <ul>
             <li><a {{if eq .Title "home"}} class="self" {{end}} href="/site/home">home</a></li>
-            <li><a {{if or (eq .Title "about") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/about">about</a></li>
+            <li><a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/wiki">wiki</a></li>
             <li><a class="clean" href="/site/projects">projects</a></li>
         </ul>  
-            {{if eq .Title "about"}}
+            {{if eq .Title "wiki"}}
                 <ul>
                     <li><a {{if or (eq .Title "tseeley") (eq .Title "journal") (eq .Title "collections") }} class="self" {{end}} href="/site/tseeley">thomas seeley</a></li>
                     <li><a class="clean" href="/site/tseeley">meta</a></li>
@@ -29,7 +29,7 @@
                 </ul>
             {{else if eq .Title "tseeley"}}
                 <ul>
-                    <li><a {{if or (eq .Title "about") (eq .Title "tseeley")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a></li>
+                    <li><a {{if or (eq .Title "wiki") (eq .Title "tseeley")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a></li>
                     <li><a class="clean" href="/site/tseeley">meta</a></li>
                 </ul>
                 <ul>
@@ -39,7 +39,7 @@
                 </ul>
             {{else if eq .Title "journal"}}
                 <ul>
-                    <li><a {{if or (eq .Title "about") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a></li>
+                    <li><a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a></li>
                     <li><a class="clean" href="/site/tseeley">meta</a></li>
                 </ul>
                 <ul>
