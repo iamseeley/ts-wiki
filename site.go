@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"regexp"
+	"time"
 
 	"github.com/russross/blackfriday/v2"
 )
@@ -14,13 +15,21 @@ import (
 type Page struct {
 	Title string
 
-	Body []byte
+	Body    []byte
+	Journal Journal
 }
 
-func (p *Page) save(dir string) error {
-	filename := dir + p.Title + ".md"
-	return os.WriteFile(filename, p.Body, 0600)
+type Journal struct {
+	Title     string
+	Body      []byte
+	Tags      []string
+	UpdatedAt time.Time
 }
+
+// func (p *Page) save(dir string) error {
+// 	filename := dir + p.Title + ".md"
+// 	return os.WriteFile(filename, p.Body, 0600)
+// }
 
 func loadPageFromDirectory(directory, title string) (*Page, error) {
 	filename := directory + title + ".md"
@@ -32,10 +41,30 @@ func loadPageFromDirectory(directory, title string) (*Page, error) {
 	return &Page{Title: title, Body: body}, nil
 }
 
-func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
+func loadJournalFromDirectory(directory, title string) (*Journal, error) {
+	filename := directory + title + ".md"
+	body, err := os.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	return &Journal{Title: title, Body: body}, nil
+}
+
+func pageHandler(w http.ResponseWriter, r *http.Request, title string) {
 	p, err := loadPageFromDirectory("pages/", title)
 	if err != nil {
 		http.Redirect(w, r, "/site/"+title, http.StatusFound)
+		return
+	}
+
+	renderTemplate(w, "site", p)
+}
+
+func journalHandler(w http.ResponseWriter, r *http.Request, title string) {
+	p, err := loadPageFromDirectory("journal/", title)
+	if err != nil {
+		http.Redirect(w, r, "/journal/"+title, http.StatusFound)
 		return
 	}
 
@@ -76,7 +105,7 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	}
 }
 
-var validPath = regexp.MustCompile("^/(site)/([a-zA-Z0-9]+)$")
+var validPath = regexp.MustCompile("^/(site|journal)/([a-zA-Z0-9]+)$")
 
 func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -94,8 +123,8 @@ func main() {
 	http.Handle("/", http.RedirectHandler("/site/home", http.StatusSeeOther))
 	fs := http.FileServer(http.Dir("assets"))
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
-	http.HandleFunc("/site/", makeHandler(viewHandler))
-	// http.HandleFunc("/edit/", makeHandler(editHandler))
+	http.HandleFunc("/site/", makeHandler(pageHandler))
+	http.HandleFunc("/journal/", makeHandler(journalHandler))
 	// http.HandleFunc("/save/", makeHandler(saveHandler))
 	port := os.Getenv("PORT")
 	if port == "" {

@@ -1,4 +1,4 @@
-<h2 id="projects">Projects</h2>
+# Projects
 
 <div class="portfolio-grid">
     <a href="/site/wando" class="portfolio-item"><div></div>wando</a>
