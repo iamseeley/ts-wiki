@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TS - {{.Title}}</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
+    <link rel="icon" href="/assets/images/wobble2.gif" type="image/gif">
+</head>
+<header id="navcontainer">
+    <div class="square"></div>
+</header>
+<body>
+
+    <p>{{ .UpdatedAt }}</p>
+
+    <main>{{ .Body | markDown }}</main>
+
+
+
+    <p>{{ .Tags }}</p>
+
+</body>
+</html>

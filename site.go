@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bytes"
+	"errors"
 	"fmt"
 	"html/template"
 	"log"
@@ -9,12 +11,12 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/go-yaml/yaml"
 	"github.com/russross/blackfriday/v2"
 )
 
 type Page struct {
-	Title string
-
+	Title   string
 	Body    []byte
 	Journal Journal
 }
@@ -41,14 +43,84 @@ func loadPageFromDirectory(directory, title string) (*Page, error) {
 	return &Page{Title: title, Body: body}, nil
 }
 
+// func loadJournalFromDirectory(directory, title string) (*Journal, error) {
+// 	filename := directory + title + ".md"
+// 	body, err := os.ReadFile(filename)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	return &Journal{Title: title, Body: body}, nil
+// }
+
 func loadJournalFromDirectory(directory, title string) (*Journal, error) {
 	filename := directory + title + ".md"
-	body, err := os.ReadFile(filename)
+	content, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
 
-	return &Journal{Title: title, Body: body}, nil
+	frontMatter, body, err := parseFrontMatter(content)
+	if err != nil {
+		return nil, err
+	}
+
+	var journal Journal
+
+	// Extract and set front matter data into the Journal struct
+	if title, ok := frontMatter["title"].(string); ok {
+		journal.Title = title
+	}
+
+	if tags, ok := frontMatter["tags"].([]interface{}); ok {
+		for _, tag := range tags {
+			if tagStr, ok := tag.(string); ok {
+				journal.Tags = append(journal.Tags, tagStr)
+			}
+		}
+	}
+
+	if updatedAtStr, ok := frontMatter["updated_at"].(string); ok {
+		updatedAt, err := time.Parse(time.RFC3339, updatedAtStr)
+		if err == nil {
+			journal.UpdatedAt = updatedAt
+		}
+	}
+
+	journal.Body = body
+
+	return &journal, nil
+}
+
+func parseFrontMatter(content []byte) (map[string]interface{}, []byte, error) {
+	frontMatter := make(map[string]interface{})
+	var contentStart int
+
+	// Find the position of the first `---` delimiter
+	delimiter := []byte("---")
+	start := bytes.Index(content, delimiter)
+	if start == -1 {
+		return nil, nil, errors.New("Front matter delimiter not found")
+	}
+
+	// Find the position of the second `---` delimiter
+	end := bytes.Index(content[start+len(delimiter):], delimiter)
+	if end == -1 {
+		return nil, nil, errors.New("Second front matter delimiter not found")
+	}
+
+	// Parse the front matter
+	if err := yaml.Unmarshal(content[start+len(delimiter):start+len(delimiter)+end], &frontMatter); err != nil {
+		return nil, nil, err
+	}
+
+	// Find the start of the actual content
+	contentStart = start + len(delimiter) + end + len(delimiter)
+
+	// Extract the front matter and content separately
+	actualContent := content[contentStart:]
+
+	return frontMatter, actualContent, nil
 }
 
 func pageHandler(w http.ResponseWriter, r *http.Request, title string) {
@@ -62,13 +134,13 @@ func pageHandler(w http.ResponseWriter, r *http.Request, title string) {
 }
 
 func journalHandler(w http.ResponseWriter, r *http.Request, title string) {
-	p, err := loadPageFromDirectory("journal/", title)
+	journal, err := loadJournalFromDirectory("journal/", title)
 	if err != nil {
 		http.Redirect(w, r, "/journal/"+title, http.StatusFound)
 		return
 	}
 
-	renderTemplate(w, "site", p)
+	renderTemplate(w, "journal", journal)
 }
 
 // func editHandler(w http.ResponseWriter, r *http.Request, title string) {
@@ -98,8 +170,8 @@ func markDowner(args ...interface{}) template.HTML {
 
 var templates = template.Must(template.New("").Funcs(template.FuncMap{"markDown": markDowner}).ParseGlob("templates/*.html"))
 
-func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
-	err := templates.ExecuteTemplate(w, tmpl+".html", p)
+func renderTemplate(w http.ResponseWriter, tmpl string, content interface{}) {
+	err := templates.ExecuteTemplate(w, tmpl+".html", content)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

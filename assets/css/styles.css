@@ -3,14 +3,14 @@
 body {
     background-color: #fff;
     font-size: 16px;
-    color: #3E577C;
+    color: #322947;
     max-width: 624px;
     overflow-x: hidden;
 }
 
 a {
     text-decoration: none;
-    color: #3E577C;
+    color: #322947;
   }
 
   body a.self, body a.parent { font-style:italic }
@@ -25,7 +25,7 @@ a {
 div.square {
   width: 4px;
   height: 4px;
-  background-color: #3E577C;
+  background-color: #322947;
 
   border: 2px;
   border-color: gray;
@@ -35,7 +35,7 @@ div.square {
 
   
 a:hover {
-    background-color: #3E577C;
+    background-color: #322947;
     color: #fff;
     text-decoration: none;
 }
@@ -49,6 +49,13 @@ img {
     margin: 0 0 10px; 
 }
 
+header img {
+  margin: 0 0 30px;
+}
+
+header a {
+  text-decoration: none;
+}
 
 
 
@@ -88,7 +95,7 @@ h1 {
   }
   
   .portfolio-item {
-    border: 1px dotted #3E577C;
+    border: 1px dotted #322947;
     padding: 6px 6px 3px;
     position: relative;
     z-index: 0;
