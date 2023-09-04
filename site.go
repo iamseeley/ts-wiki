@@ -16,15 +16,14 @@ import (
 )
 
 type Page struct {
-	Title   string
-	Body    []byte
-	Journal Journal
+	Title string
+	Body  []byte
 }
 
 type Journal struct {
 	Title     string
 	Body      []byte
-	Tags      []string
+	Image     string
 	UpdatedAt time.Time
 }
 
@@ -42,6 +41,46 @@ func loadPageFromDirectory(directory, title string) (*Page, error) {
 
 	return &Page{Title: title, Body: body}, nil
 }
+
+// func loadPageFromDirectory(directory, title string) (*Page, error) {
+// 	filename := directory + title + ".md"
+// 	content, err := os.ReadFile(filename)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	frontMatter, body, err := parseFrontMatter(content)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	var page Page
+
+// 	// Extract and set front matter data into the Journal struct
+// 	if title, ok := frontMatter["title"].(string); ok {
+// 		page.Title = title
+// 	}
+
+// 	// if tags, ok := frontMatter["tags"].([]interface{}); ok {
+// 	// 	for _, tag := range tags {
+// 	// 		if tagStr, ok := tag.(string); ok {
+// 	// 			journal.Tags = append(journal.Tags, tagStr)
+// 	// 		}
+// 	// 	}
+// 	// }
+
+// 	// if updatedAtStr, ok := frontMatter["updated_at"].(string); ok {
+// 	// 	updatedAt, err := time.Parse(time.RFC3339, updatedAtStr)
+// 	// 	if err == nil {
+// 	// 		page.UpdatedAt = updatedAt
+// 	// 	}
+// 	// }
+
+// 	page.Body = body
+
+// 	return &page, nil
+
+// }
 
 // func loadJournalFromDirectory(directory, title string) (*Journal, error) {
 // 	filename := directory + title + ".md"
@@ -72,13 +111,17 @@ func loadJournalFromDirectory(directory, title string) (*Journal, error) {
 		journal.Title = title
 	}
 
-	if tags, ok := frontMatter["tags"].([]interface{}); ok {
-		for _, tag := range tags {
-			if tagStr, ok := tag.(string); ok {
-				journal.Tags = append(journal.Tags, tagStr)
-			}
-		}
+	if image, ok := frontMatter["image"].(string); ok {
+		journal.Image = image
 	}
+
+	// if tags, ok := frontMatter["tags"].([]interface{}); ok {
+	// 	for _, tag := range tags {
+	// 		if tagStr, ok := tag.(string); ok {
+	// 			journal.Tags = append(journal.Tags, tagStr)
+	// 		}
+	// 	}
+	// }
 
 	if updatedAtStr, ok := frontMatter["updated_at"].(string); ok {
 		updatedAt, err := time.Parse(time.RFC3339, updatedAtStr)

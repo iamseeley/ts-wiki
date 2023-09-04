@@ -1,3 +1,9 @@
+---
+title: about
+image: /assets/images/maui.jpg
+---
+
+
 
 # About this wiki.
 

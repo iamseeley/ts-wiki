@@ -20,7 +20,7 @@
             {{if eq .Title "wiki"}}
                 <ul>
                     <li><a {{if or (eq .Title "tseeley") (eq .Title "journal") (eq .Title "collections") }} class="self" {{end}} href="/site/tseeley">thomas seeley</a></li>
-                    <li><a class="clean" href="/site/tseeley">meta</a></li>
+                    <li><a class="clean" href="/site/meta">meta</a></li>
                 </ul>
             {{else if eq .Title "projects"}}
                 <ul>
@@ -59,6 +59,7 @@
 
 <body>
     <!-- <h1>{{.Title}}</h1> -->
+    
 
     <main>{{ .Body | markDown }}</main>
 
