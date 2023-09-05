@@ -14,7 +14,7 @@
 
     <p>{{ .UpdatedAt }}</p>
 
-    <div><img src="{{.Image}}"></div>
+    <div><img loading="lazy" src="{{.Image}}"></div>
 
     <main>{{ .Body | markDown }}</main>
 
