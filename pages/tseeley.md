@@ -1,7 +1,7 @@
 
 
+<div><img src="/assets/images/thomas.jpg"></div>
 
-<figure><img src="/assets/images/thomas.jpg"></figure>
 
 # Thomas Seeley
 

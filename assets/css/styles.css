@@ -9,6 +9,15 @@ body {
     overflow-x: hidden;
 }
 
+header div {
+  width: 16px;
+  height: 16px;
+}
+
+header {
+  margin: 0 0 20px;
+}
+
 a {
     text-decoration: none;
     color: #322947;
@@ -23,16 +32,6 @@ a {
     text-decoration: underline;
   }
 
-div.square {
-  width: 4px;
-  height: 4px;
-  background-color: #322947;
-
-  border: 2px;
-  border-color: gray;
-  padding: 2px;
-  margin-bottom: 30px;
-}
 
   
 a:hover {
@@ -50,27 +49,20 @@ thead th {
   width: 25%;
 }
 
-figure img {
-  
-  padding: 0;
-  
-  
-  
-}
 
 
 
 img {
     max-width:100%;
     display:inline-block;
-    margin: 0 0 10px; 
+    
 }
 
 header img {
-  margin: 0 0 30px;
+  display: block;
 }
 
-header a {
+header div a {
   text-decoration: none;
 }
 
@@ -98,10 +90,7 @@ nav {
     backdrop-filter: blur(3px);
 }
 
-h1 {
-   
 
-}
 
 .portfolio-grid {
     display: grid;
