@@ -5,8 +5,12 @@ body {
     background-color: #fff;
     font-size: 16px;
     color: #322947;
-    max-width: 624px;
+  
     overflow-x: hidden;
+}
+
+main {
+  max-width: 624px;
 }
 
 header div {
@@ -52,11 +56,14 @@ thead th {
 
 
 
-img {
-    max-width:100%;
+figure img {
+    
+    margin-left: -48px;
+    max-width:100vw;
     display:inline-block;
     
 }
+
 
 header img {
   display: block;
@@ -66,7 +73,12 @@ header div a {
   text-decoration: none;
 }
 
-
+footer {
+  line-height: 20px;
+  border-color: #322947;
+  border-top: 1.5px solid;
+  padding: 20px 0 0 0;
+}
 
 /* .navcontainer {
     top: 0;
