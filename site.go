@@ -173,7 +173,7 @@ func main() {
 
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Set cache headers to cache assets for 1 hour (you can adjust this duration)
-		setCacheHeaders(w, 3600)
+		setCacheHeaders(w, 31536000)
 		fs.ServeHTTP(w, r)
 	})))
 
