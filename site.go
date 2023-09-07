@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"regexp"
+
 	"time"
 
 	"github.com/go-yaml/yaml"
@@ -27,11 +28,6 @@ type Journal struct {
 	UpdatedAt time.Time
 }
 
-// func (p *Page) save(dir string) error {
-// 	filename := dir + p.Title + ".md"
-// 	return os.WriteFile(filename, p.Body, 0600)
-// }
-
 func loadPageFromDirectory(directory, title string) (*Page, error) {
 	filename := directory + title + ".md"
 	body, err := os.ReadFile(filename)
@@ -41,56 +37,6 @@ func loadPageFromDirectory(directory, title string) (*Page, error) {
 
 	return &Page{Title: title, Body: body}, nil
 }
-
-// func loadPageFromDirectory(directory, title string) (*Page, error) {
-// 	filename := directory + title + ".md"
-// 	content, err := os.ReadFile(filename)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	frontMatter, body, err := parseFrontMatter(content)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	var page Page
-
-// 	// Extract and set front matter data into the Journal struct
-// 	if title, ok := frontMatter["title"].(string); ok {
-// 		page.Title = title
-// 	}
-
-// 	// if tags, ok := frontMatter["tags"].([]interface{}); ok {
-// 	// 	for _, tag := range tags {
-// 	// 		if tagStr, ok := tag.(string); ok {
-// 	// 			journal.Tags = append(journal.Tags, tagStr)
-// 	// 		}
-// 	// 	}
-// 	// }
-
-// 	// if updatedAtStr, ok := frontMatter["updated_at"].(string); ok {
-// 	// 	updatedAt, err := time.Parse(time.RFC3339, updatedAtStr)
-// 	// 	if err == nil {
-// 	// 		page.UpdatedAt = updatedAt
-// 	// 	}
-// 	// }
-
-// 	page.Body = body
-
-// 	return &page, nil
-
-// }
-
-// func loadJournalFromDirectory(directory, title string) (*Journal, error) {
-// 	filename := directory + title + ".md"
-// 	body, err := os.ReadFile(filename)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	return &Journal{Title: title, Body: body}, nil
-// }
 
 func loadJournalFromDirectory(directory, title string) (*Journal, error) {
 	filename := directory + title + ".md"
@@ -167,6 +113,7 @@ func parseFrontMatter(content []byte) (map[string]interface{}, []byte, error) {
 }
 
 func pageHandler(w http.ResponseWriter, r *http.Request, title string) {
+
 	p, err := loadPageFromDirectory("pages/", title)
 	if err != nil {
 		http.Redirect(w, r, "/site/"+title, http.StatusFound)
@@ -177,6 +124,7 @@ func pageHandler(w http.ResponseWriter, r *http.Request, title string) {
 }
 
 func journalHandler(w http.ResponseWriter, r *http.Request, title string) {
+
 	journal, err := loadJournalFromDirectory("journal/", title)
 	if err != nil {
 		http.Redirect(w, r, "/journal/"+title, http.StatusFound)
@@ -185,26 +133,6 @@ func journalHandler(w http.ResponseWriter, r *http.Request, title string) {
 
 	renderTemplate(w, "journal", journal)
 }
-
-// func editHandler(w http.ResponseWriter, r *http.Request, title string) {
-// 	p, err := loadPageFromDirectory("data/", title)
-// 	if err != nil {
-// 		p = &Page{Title: title}
-// 	}
-
-// 	renderTemplate(w, "edit", p)
-// }
-
-// func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
-// 	body := r.FormValue("body")
-// 	p := &Page{Title: title, Body: []byte(body)}
-// 	err := p.save("data/")
-// 	if err != nil {
-// 		http.Error(w, err.Error(), http.StatusInternalServerError)
-// 		return
-// 	}
-// 	http.Redirect(w, r, "/site/"+title, http.StatusFound)
-// }
 
 func markDowner(args ...interface{}) template.HTML {
 	s := blackfriday.Run([]byte(fmt.Sprintf("%s", args...)))
@@ -234,13 +162,26 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
 	}
 }
 
+func setCacheHeaders(w http.ResponseWriter, maxAge int) {
+	// Set cache control headers to enable caching for the specified duration
+	w.Header().Set("Cache-Control", fmt.Sprintf("public, max-age=%d", maxAge))
+}
+
 func main() {
 	http.Handle("/", http.RedirectHandler("/site/home", http.StatusSeeOther))
 	fs := http.FileServer(http.Dir("assets"))
-	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
+
+	http.Handle("/assets/", http.StripPrefix("/assets/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Set cache headers to cache assets for 1 hour (you can adjust this duration)
+		setCacheHeaders(w, 3600)
+		fs.ServeHTTP(w, r)
+	})))
+
+	// http.Handle("/assets/", http.StripPrefix("/assets/", fs))
+
 	http.HandleFunc("/site/", makeHandler(pageHandler))
 	http.HandleFunc("/journal/", makeHandler(journalHandler))
-	// http.HandleFunc("/save/", makeHandler(saveHandler))
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
