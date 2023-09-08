@@ -113,7 +113,7 @@ func parseFrontMatter(content []byte) (map[string]interface{}, []byte, error) {
 }
 
 func pageHandler(w http.ResponseWriter, r *http.Request, title string) {
-
+	setCacheHeaders(w, 600)
 	p, err := loadPageFromDirectory("pages/", title)
 	if err != nil {
 		http.Redirect(w, r, "/site/"+title, http.StatusFound)
@@ -124,7 +124,7 @@ func pageHandler(w http.ResponseWriter, r *http.Request, title string) {
 }
 
 func journalHandler(w http.ResponseWriter, r *http.Request, title string) {
-
+	setCacheHeaders(w, 600)
 	journal, err := loadJournalFromDirectory("journal/", title)
 	if err != nil {
 		http.Redirect(w, r, "/journal/"+title, http.StatusFound)
@@ -164,7 +164,7 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
 
 func setCacheHeaders(w http.ResponseWriter, maxAge int) {
 	// Set cache control headers to enable caching for the specified duration
-	w.Header().Set("Cache-Control", fmt.Sprintf("public, max-age=%d", maxAge))
+	w.Header().Set("Cache-Control", fmt.Sprintf("max-age=%d", maxAge))
 }
 
 func main() {
@@ -173,7 +173,7 @@ func main() {
 
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Set cache headers to cache assets for 1 hour (you can adjust this duration)
-		setCacheHeaders(w, 31536000)
+		setCacheHeaders(w, 600)
 		fs.ServeHTTP(w, r)
 	})))
 
