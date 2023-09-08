@@ -53,14 +53,16 @@ thead th {
   width: 25%;
 }
 
-
+body img {
+  display: inline-block;
+}
 
 
 figure img {
-    
+    width: 800px;
     margin-left: -48px;
-    max-width:100vw;
-    display:inline-block;
+    max-width: 100vw;
+    
     
 }
 
