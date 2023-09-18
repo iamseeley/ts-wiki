@@ -76,6 +76,8 @@ header div a {
 }
 
 footer {
+  position: fixed;
+  bottom: 5px;
   line-height: 20px;
   border-color: #322947;
   border-top: 1.5px solid;

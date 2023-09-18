@@ -16,7 +16,7 @@
             <li><a {{if eq .Title "home"}} class="self" {{end}} href="/site/home">home</a></li>
             <li><a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/wiki">wiki</a></li>
             <li><a class="clean" href="/site/projects">projects</a></li>
-        </ul>  
+        </ul>
             {{if eq .Title "wiki"}}
                 <ul>
                     <li><a {{if or (eq .Title "tseeley") (eq .Title "journal") (eq .Title "collections") }} class="self" {{end}} href="/site/tseeley">thomas seeley</a></li>
@@ -53,21 +53,21 @@
                     <li><a class="clean" href="/site/home">index</a></li>
                 </ul>
             {{end}}
-        
+
     </nav>
-    
+
 
 <body>
     <!-- <h1>{{.Title}}</h1> -->
-    
+
 
     <main>{{ .Body | markDown }}</main>
 
- 
-    
-   
+
+
+
     <!-- <p>[<a href="/edit/{{.Title}}">edit</a>]</p> -->
-    
+
 </body>
 
 <footer></footer>
