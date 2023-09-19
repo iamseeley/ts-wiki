@@ -1,7 +1,21 @@
-# This is a personal wiki.
+# This is my personal wiki.
 
 
+It is inspired by wiki's, weblogs, and digital gardens like Devine Lu Linvega's [XIIVV](https://wiki.xxiivv.com/site/home.html), Chase McCoy's [chasem.co](https://chasem.co/), Gwern Branwen's [gwern.net](https://gwern.net/) and so many [more](/site/links). 
 
-## These pages are written using Markdown.
+If you would like to go deeper on digital gardens, check out Maggie Appleton's post on the [history and ethos of digital gardens.](https://maggieappleton.com/garden-history)
 
-<blockquote>"Markdown’s syntax is intended for one purpose: to be used as a format for writing for the web. Markdown is not a replacement for HTML, or even close to it. Its syntax is very small, corresponding only to a very small subset of HTML tags. The idea is not to create a syntax that makes it easier to insert HTML tags. In my opinion, HTML tags are already easy to insert. The idea for Markdown is to make it easy to read, write, and edit prose. HTML is a publishing format; Markdown is a writing format."</blockquote>
+This wiki started as a challenge I gave myself. The challenge was to build a simple static site generator that would act as my personal wiki as well as my portfolio. I wanted it to be extremely bare bones, with as few dependencies as possible. The focus would be on the content... 
+
+At the time of creating this, I was studying Go and I discovered the html/template package and Blackfriday. They were exactly what I needed.
+
+So, this website is written in Go. I have two html templates for the site pages and journal entries. The site pages and journal entries are written in Markdown and converted to HTML using Blackfriday a Markdown processor implemented in Go.
+
+Find the code here [iamseeley/ts-wiki](https://github.com/iamseeley/ts-wiki). It's a mess, but it's my mess. ;)
+
+I'm working on making a project template so other people can try it out!
+
+> "It's a living document that outlines where one has 
+> been, and a tool that advises where one could go."
+
+> --- Devine Lu Linvega
