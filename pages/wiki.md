@@ -7,11 +7,11 @@ If you would like to go deeper on digital gardens, check out Maggie Appleton's p
 
 This wiki started as a challenge I gave myself. The challenge was to build a simple static site generator that would act as my personal wiki as well as my portfolio. I wanted it to be extremely bare bones, with as few dependencies as possible. The focus would be on the content... 
 
-At the time of creating this, I was studying Go and I discovered the html/template package and Blackfriday. They were exactly what I needed.
+At the time of creating this, I was studying Go and I discovered the html/template package and Blackfriday. I thought these tools would work well for what I wanted to do.
 
 So, this website is written in Go. I have two html templates for the site pages and journal entries. The site pages and journal entries are written in Markdown and converted to HTML using Blackfriday a Markdown processor implemented in Go.
 
-Find the code here [iamseeley/ts-wiki](https://github.com/iamseeley/ts-wiki). It's a mess, but it's my mess. ;)
+Find the code here [iamseeley/ts-wiki](https://github.com/iamseeley/ts-wiki).
 
 I'm working on making a project template so other people can try it out!
 
