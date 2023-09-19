@@ -126,3 +126,10 @@ nav {
   blockquote {
     text-decoration: italic;
   }
+
+
+  .project {
+    border: 2px;
+    border-color: #322947;
+    border-radius: 15%;
+  }
