@@ -56,3 +56,11 @@ greetings(Shaquille O'Neal)
 
 ```
 </pre>
+
+
+<figure><img  alt="Thomas standing on top of Half Dome in Yosemite National Park." loading="lazy" src="/assets/images/thomas.jpg">
+<figcaption>Here is an image of me inside a figure block. This text is a figcaption.</figcaption>
+</figure>
+
+
+![image](/assets/images/starvan.jpg)

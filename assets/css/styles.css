@@ -53,9 +53,9 @@ thead th {
   width: 25%;
 }
 
-body img {
+/* body img {
   display: inline-block;
-}
+} */
 
 
 figure img {
@@ -135,10 +135,11 @@ nav {
   }
 
   pre code {
+    display: block;
     margin-top: 0px;
     background: none;
     white-space: pre;
-    overflow: auto;
+    overflow-x: scroll;
     max-width: 100%;
     min-width: 100px;
     padding: 0;
