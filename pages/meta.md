@@ -1,13 +1,31 @@
 # These pages are written using Markdown.
 
-
 # h1
-
 ## h2
-
 ### h3
-
 #### h4
+
+
+This is a paragraph with some **bold** text and some *italic* text.
+
+### This is a blockquote:
+
+<blockquote> <p>"It's a living document that outlines where one has 
+ been, and a tool that advises where one could go."</p>
+
+<p><cite>--- Devine Lu Linvega</cite></p>
+</blockquote>
+
+### This is my grocery list:
+<ul>
+  <li>2x carrots</li>
+  <li>eggs</li>
+  <li>oatmilk</li>
+  <li>brocolli</li>
+</ul>
+
+
+### This is a table:
 
  <table>
   <tr>
@@ -26,3 +44,15 @@
     <td>Mexico</td>
   </tr>
 </table> 
+
+### This is some code:
+
+<pre>
+```
+def greetings(name):
+  print(f"Hello {name} nice to meet you.")
+
+greetings(Shaquille O'Neal)
+
+```
+</pre>
