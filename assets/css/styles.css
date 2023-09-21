@@ -2,7 +2,7 @@
 
 body {
     
-    background-color: #fff;
+    background-color: #d5ccea;
     font-size: 16px;
     color: #322947;
   
@@ -26,6 +26,10 @@ header div {
 
 header {
   margin: 0 0 20px;
+}
+
+nav a {
+  padding-right: 4px;
 }
 
 a {
@@ -72,7 +76,10 @@ figure img {
     
 }
 
-
+nav {
+  border-bottom: 2px dotted #322947;
+  padding-bottom: 8px;
+}
 
 
 header img {
@@ -92,27 +99,6 @@ footer {
   padding: 20px 0 0 0;
 }
 
-/* .navcontainer {
-    top: 0;
-    position: fixed;
-    width: 100vw;
-    z-index: 100;
-} */
-
-nav ul {
-  padding: 0;
-  margin: 0 45px 0px 0;
-  list-style-type: none;
-  
-}
-
-nav {
-  display: flex;
-    margin: 0 0 30px;
-    background: rgba(255, 255, 255, 0.9);
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
-}
 
 
 
@@ -140,6 +126,7 @@ nav {
     border: 1px dotted #322947;
     padding: 6px 6px 3px;
   }
+  .project img 
 
   pre {
     display: block;

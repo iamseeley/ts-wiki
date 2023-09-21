@@ -11,46 +11,79 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="/assets/favicon/site.webmanifest">
 </head>
-<header>
-    <a href="/site/home"><img src="/assets/favicon/favicon-16x16.png"></a>
-</header>
+
     <nav>
-        <ul>
-            <li><a {{if eq .Title "home"}} class="self" {{end}} href="/site/home">home</a></li>
-            <li><a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/wiki">wiki</a></li>
-            <li><a class="clean" href="/site/projects">projects</a></li>
-        </ul>
-            {{if eq .Title "wiki"}}
-                <ul>
+        
+            <a href="/site/home"><img src="/assets/favicon/favicon-16x16.png"></a>
+        
+        <a {{if eq .Title "home"}} class="self" {{end}} href="/site/home">home</a>
+<a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/wiki">wiki</a>
+<a class="clean" href="/site/projects">projects</a>
+<span>|</span>
+{{if eq .Title "wiki"}}
+    <a {{if or (eq .Title "tseeley") (eq .Title "journal") (eq .Title "collections") }} class="self" {{end}} href="/site/tseeley">thomas seeley</a>
+    <a class="clean" href="/site/meta">meta</a>
+    <span>|</span>
+{{else if eq .Title "projects"}}
+    <a class="clean" href="/site/home">web</a>
+    <a class="clean" href="/site/tseeley">physical</a>
+    <a class="clean" href="/site/tseeley">photography</a>
+    <span>|</span>
+{{else if eq .Title "tseeley"}}
+    <a {{if or (eq .Title "wiki") (eq .Title "tseeley")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
+    <a class="clean" href="/site/meta">meta</a>
+    <span>|</span>
+    <a class="clean" href="/site/journal">journal</a>
+    <a class="clean" href="/site/collections">collections</a>
+    <span>|</span>
+{{else if eq .Title "journal"}}
+    <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
+    <a class="clean" href="/site/tseeley">meta</a>
+    <a {{if or (eq .Title "journal")}} class="self"{{end}} href="/site/journal">journal</a>
+    <a class="clean" href="/site/collections">collections</a>
+    <span>|</span>
+{{else if eq .Title "collections"}}
+    <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
+    <a class="clean" href="/site/tseeley">meta</a>
+    <a {{if or (eq .Title "journal")}} class="self"{{end}} href="/site/journal">journal</a>
+    <a class="clean" href="/site/collections">collections</a>
+    <span>|</span>
+{{else if eq .Title "meta"}}
+    <a class="clean" href="/site/home">index</a>
+{{end}}
+
+        
+            <!-- {{if eq .Title "wiki"}}
+                <div>
                     <li><a {{if or (eq .Title "tseeley") (eq .Title "journal") (eq .Title "collections") }} class="self" {{end}} href="/site/tseeley">thomas seeley</a></li>
                     <li><a class="clean" href="/site/meta">meta</a></li>
-                </ul>
+                </div>
             {{else if eq .Title "projects"}}
-                <ul>
+                <div>
                     <li><a class="clean" href="/site/home">web</a></li>
                     <li><a class="clean" href="/site/tseeley">physical</a></li>
                     <li><a class="clean" href="/site/tseeley">photography</a></li>
-                </ul>
+                </div>
             {{else if eq .Title "tseeley"}}
-                <ul>
+                <div>
                     <li><a {{if or (eq .Title "wiki") (eq .Title "tseeley")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a></li>
                     <li><a class="clean" href="/site/meta">meta</a></li>
-                </ul>
-                <ul>
+                </div>
+                <div>
                     <li><a class="clean" href="/site/journal">journal</a></li>
                     <li><a class="clean" href="/site/collections">collections</a></li>
-                    <!-- <li><a class="clean" href="/site/tseeley">goals</a></li> -->
-                </ul>
+                     <li><a class="clean" href="/site/tseeley">goals</a></li>
+                </div>
             {{else if eq .Title "meta"}}
-                <ul>
+                <div>
                     <li><a {{if or (eq .Title "wiki") (eq .Title "tseeley")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a></li>
                     <li><a class="clean" href="/site/meta">meta</a></li>
-                </ul>
-                <ul>
+                </div>
+                <div>
                     <li><a class="clean" href="/site/journal">journal</a></li>
                     <li><a class="clean" href="/site/collections">collections</a></li>
-                    <!-- <li><a class="clean" href="/site/tseeley">goals</a></li> -->
-                </ul>
+                    
+                </div>
             
             {{else if eq .Title "journal"}}
                 <ul>
@@ -60,7 +93,7 @@
                 <ul>
                     <li><a {{if or (eq .Title "journal")}} class="self"{{end}} href="/site/journal">journal</a></li>
                     <li><a class="clean" href="/site/collections">collections</a></li>
-                    <!-- <li><a class="clean" href="/site/tseeley">goals</a></li> -->
+                    
                 </ul>
 
             {{else if eq .Title "collections"}}
@@ -71,13 +104,13 @@
                 <ul>
                     <li><a {{if or (eq .Title "journal")}} class="self"{{end}} href="/site/journal">journal</a></li>
                     <li><a class="clean" href="/site/collections">collections</a></li>
-                    <!-- <li><a class="clean" href="/site/tseeley">goals</a></li> -->
+                    
                 </ul>
             {{else if eq .Title "meta"}}
                 <ul>
                     <li><a class="clean" href="/site/home">index</a></li>
                 </ul>
-            {{end}}
+            {{end}} -->
 
     </nav>
 
