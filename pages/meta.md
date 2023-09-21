@@ -1,6 +1,6 @@
 # These pages are written using Markdown.
 
-<aside>Well, mostly Markdown. Sometimes the Markdown doesn't like to become HTML correctly. Good thing I can write HTML directly in the Markdown!</aside>
+<aside>Well, mostly Markdown. Sometimes the Markdown doesn't like to become HTML. Good thing I can write HTML directly in Markdown!</aside>
 
 # h1
 ## h2
