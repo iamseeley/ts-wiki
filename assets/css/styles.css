@@ -71,6 +71,7 @@ nav div {
 
 nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   border-bottom: 2px dotted #322947;
   padding-bottom: 8px;
