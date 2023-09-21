@@ -46,10 +46,10 @@
             <div>
             <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
             <a class="clean" href="/site/tseeley">meta</a>
+            </div>
             <div>
             <a {{if or (eq .Title "journal")}} class="self"{{end}} href="/site/journal">journal</a>
             <a class="clean" href="/site/collections">collections</a>
-            </div>
             </div>
         {{else if eq .Title "collections"}}
             <div>
