@@ -14,43 +14,53 @@
 
     <nav>
         
-            <a href="/site/home"><img src="/assets/favicon/favicon-16x16.png"></a>
+        <a href="/site/home"><img src="/assets/favicon/favicon-16x16.png"></a>
         
+        <div>
         <a {{if eq .Title "home"}} class="self" {{end}} href="/site/home">home</a>
-<a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/wiki">wiki</a>
-<a class="clean" href="/site/projects">projects</a>
-<span>|</span>
-{{if eq .Title "wiki"}}
-    <a {{if or (eq .Title "tseeley") (eq .Title "journal") (eq .Title "collections") }} class="self" {{end}} href="/site/tseeley">thomas seeley</a>
-    <a class="clean" href="/site/meta">meta</a>
-    <span>|</span>
-{{else if eq .Title "projects"}}
-    <a class="clean" href="/site/home">web</a>
-    <a class="clean" href="/site/tseeley">physical</a>
-    <a class="clean" href="/site/tseeley">photography</a>
-    <span>|</span>
-{{else if eq .Title "tseeley"}}
-    <a {{if or (eq .Title "wiki") (eq .Title "tseeley")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
-    <a class="clean" href="/site/meta">meta</a>
-    <span>|</span>
-    <a class="clean" href="/site/journal">journal</a>
-    <a class="clean" href="/site/collections">collections</a>
-    <span>|</span>
-{{else if eq .Title "journal"}}
-    <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
-    <a class="clean" href="/site/tseeley">meta</a>
-    <a {{if or (eq .Title "journal")}} class="self"{{end}} href="/site/journal">journal</a>
-    <a class="clean" href="/site/collections">collections</a>
-    <span>|</span>
-{{else if eq .Title "collections"}}
-    <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
-    <a class="clean" href="/site/tseeley">meta</a>
-    <a {{if or (eq .Title "journal")}} class="self"{{end}} href="/site/journal">journal</a>
-    <a class="clean" href="/site/collections">collections</a>
-    <span>|</span>
-{{else if eq .Title "meta"}}
-    <a class="clean" href="/site/home">index</a>
-{{end}}
+        <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/wiki">wiki</a>
+        <a class="clean" href="/site/projects">projects</a>
+        </div>
+
+        {{if eq .Title "wiki"}}
+            <div>
+            <a {{if or (eq .Title "tseeley") (eq .Title "journal") (eq .Title "collections") }} class="self" {{end}} href="/site/tseeley">thomas seeley</a>
+            <a class="clean" href="/site/meta">meta</a>
+            </div>
+        {{else if eq .Title "projects"}}
+            <div>
+            <a class="clean" href="/site/home">web</a>
+            <a class="clean" href="/site/tseeley">physical</a>
+            <a class="clean" href="/site/tseeley">photography</a>
+            </div>
+        {{else if eq .Title "tseeley"}}
+            <div>
+            <a {{if or (eq .Title "wiki") (eq .Title "tseeley")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
+            <a class="clean" href="/site/meta">meta</a>
+            </div>
+            <div>
+            <a class="clean" href="/site/journal">journal</a>
+            <a class="clean" href="/site/collections">collections</a>
+            </div>
+        {{else if eq .Title "journal"}}
+            <div>
+            <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
+            <a class="clean" href="/site/tseeley">meta</a>
+            <a {{if or (eq .Title "journal")}} class="self"{{end}} href="/site/journal">journal</a>
+            <a class="clean" href="/site/collections">collections</a>
+            </div>
+        {{else if eq .Title "collections"}}
+            <div>
+            <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
+            <a class="clean" href="/site/tseeley">meta</a>
+            <a {{if or (eq .Title "journal")}} class="self"{{end}} href="/site/journal">journal</a>
+            <a class="clean" href="/site/collections">collections</a>
+            </div>
+        {{else if eq .Title "meta"}}
+            <div>
+            <a class="clean" href="/site/home">index</a>
+            </div>
+        {{end}}
 
         
             <!-- {{if eq .Title "wiki"}}

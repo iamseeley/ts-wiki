@@ -1,12 +1,9 @@
-html {
-  background-color: #d6cbeb;
-}
 
 body {
   padding: 8px;
   max-width: 624px;
   margin: auto;
-    background-color: #d6cbeb;
+    background-color: #ffffff;
     font-size: 16px;
     color: #322947;
   
@@ -30,9 +27,6 @@ header {
   margin: 0 0 20px;
 }
 
-nav a {
-  padding-right: 4px;
-}
 
 a {
     text-decoration: none;
@@ -70,9 +64,14 @@ thead th {
 } */
 
 
-
+nav div {
+  padding-right: 8px;
+  border-right: 2px solid #322947;
+}
 
 nav {
+  display: flex;
+  gap: 8px;
   border-bottom: 2px dotted #322947;
   padding-bottom: 8px;
 }
