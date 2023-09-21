@@ -1,24 +1,24 @@
 html {
-  background-color: #e3dfeb;
+  background-color: #d6cbeb;
 }
 
 body {
-    
-    
+  margin-top: 8px;
+  max-width: 624px;
+  margin: auto;
+    background-color: #d6cbeb;
     font-size: 16px;
     color: #322947;
   
     overflow-x: hidden;
 }
 
-main {
-  max-width: 624px;
-}
+
 
 main img {
   display: inline-block;
   max-width: 100%;
-  margin: 0 0 20px;
+  
 }
 
 header div {
@@ -70,13 +70,7 @@ thead th {
 } */
 
 
-figure img {
-    width: 800px;
-    margin-left: -48px;
-    max-width: 100vw;
-    
-    
-}
+
 
 nav {
   border-bottom: 2px dotted #322947;
