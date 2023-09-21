@@ -11,4 +11,4 @@ Thomas studied Business Managment and Entrepreneurship at the University of Tenn
 
 Get in touch via email [hello@tseeley.com](hello).
 
-Find me on [twitter](iamseeley) and [github](iamseeley).
+Find him on [twitter](iamseeley) and [github](iamseeley).

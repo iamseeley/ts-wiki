@@ -13,6 +13,12 @@ main {
   max-width: 624px;
 }
 
+main img {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0 0 20px;
+}
+
 header div {
   width: 16px;
   height: 16px;
@@ -65,6 +71,8 @@ figure img {
     
     
 }
+
+
 
 
 header img {
@@ -129,14 +137,13 @@ nav {
 
 
   .project {
-    border: 2px;
-    border-color: #322947;
-    border-radius: 15%;
+    border: 1px dotted #322947;
+    padding: 6px 6px 3px;
   }
 
-  pre code {
+  pre {
     display: block;
-    margin-top: 0px;
+    margin: 0px;
     background: none;
     white-space: pre;
     overflow-x: scroll;

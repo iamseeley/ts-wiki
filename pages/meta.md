@@ -1,5 +1,7 @@
 # These pages are written using Markdown.
 
+<aside>Well, mostly Markdown. Sometimes the Markdown doesn't like to become HTML correctly. Good thing I can write HTML directly in the Markdown!</aside>
+
 # h1
 ## h2
 ### h3
@@ -45,7 +47,7 @@ This is a paragraph with some **bold** text and some *italic* text.
   </tr>
 </table> 
 
-### This is some code:
+<h3>This is some code:</h3>
 
 <pre>
 ```
@@ -62,5 +64,6 @@ greetings(Shaquille O'Neal)
 <figcaption>Here is an image of me inside a figure block. This text is a figcaption.</figcaption>
 </figure>
 
+### This is a regular ole image:
 
 ![image](/assets/images/starvan.jpg)

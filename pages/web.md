@@ -14,6 +14,7 @@ a food truck:
 
 <div class="project">
     <div><img src="/assets/images/thomas.webp"></div>
+    <div><h3>Shaka Shrimp Truck</h3></div>
     <div><p>project description here</p></div>
 </div>
 
