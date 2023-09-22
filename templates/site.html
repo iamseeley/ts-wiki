@@ -159,7 +159,11 @@
 
 
     <main>{{ .Body | markDown }}</main>
-
+    <!-- {{if eq .Title "journal"}}
+        {{range .Journal}}
+            <h3>{{.Title}}</h3>
+        {{end}}
+    {{end}} -->
 
     <footer>
         <div>
