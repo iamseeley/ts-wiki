@@ -119,7 +119,6 @@ func pageHandler(w http.ResponseWriter, r *http.Request, title string) {
 		http.Redirect(w, r, "/site/"+title, http.StatusFound)
 		return
 	}
-
 	renderTemplate(w, "site", p)
 }
 

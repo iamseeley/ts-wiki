@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <title>ts — {{.Title}}</title>
+    <meta property="og:image" content="">
+    <title>TS — {{.Title}}</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
@@ -20,47 +21,73 @@
         <a {{if eq .Title "home"}} class="self" {{end}} href="/site/home">home</a>
         <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/wiki">wiki</a>
         <a class="clean" href="/site/projects">projects</a>
+        <span>~</span>
         </div>
-
+        
         {{if eq .Title "wiki"}}
             <div>
             <a {{if or (eq .Title "tseeley") (eq .Title "journal") (eq .Title "collections") }} class="self" {{end}} href="/site/tseeley">thomas seeley</a>
             <a class="clean" href="/site/meta">meta</a>
+            <span>~</span>
             </div>
+            
         {{else if eq .Title "projects"}}
             <div>
             <a class="clean" href="/site/home">web</a>
             <a class="clean" href="/site/tseeley">physical</a>
             <a class="clean" href="/site/tseeley">photography</a>
+            <span>~</span>
             </div>
+            
         {{else if eq .Title "tseeley"}}
             <div>
             <a {{if or (eq .Title "wiki") (eq .Title "tseeley")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
             <a class="clean" href="/site/meta">meta</a>
+            <span>~</span>
             </div>
+            
             <div>
             <a class="clean" href="/site/journal">journal</a>
             <a class="clean" href="/site/collections">collections</a>
+            <span>~</span>
             </div>
+
+        {{else if eq .Title "meta"}}
+            <div>
+            <a class="clean" href="/site/tseeley">thomas seeley</a>
+            <a {{if or (eq .Title "wiki") (eq .Title "meta")}} class="self"{{end}} href="/site/meta">meta</a>
+            <span>~</span>
+            </div>
+
+            <div>
+                <a class="clean" href="/site/home">index</a>
+                <span>~</span>
+                </div>
+            
         {{else if eq .Title "journal"}}
             <div>
             <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
-            <a class="clean" href="/site/tseeley">meta</a>
+            <a class="clean" href="/site/meta">meta</a>
+            <span>~</span>
             </div>
+            
             <div>
             <a {{if or (eq .Title "journal")}} class="self"{{end}} href="/site/journal">journal</a>
             <a class="clean" href="/site/collections">collections</a>
+            <span>~</span>
             </div>
+            
         {{else if eq .Title "collections"}}
             <div>
             <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal")}} class="self"{{end}} href="/site/tseeley">thomas seeley</a>
             <a class="clean" href="/site/tseeley">meta</a>
+            <span>~</span>
+            </div>
+            
+            <div>
             <a {{if or (eq .Title "journal")}} class="self"{{end}} href="/site/journal">journal</a>
             <a class="clean" href="/site/collections">collections</a>
-            </div>
-        {{else if eq .Title "meta"}}
-            <div>
-            <a class="clean" href="/site/home">index</a>
+            <span>~</span>
             </div>
         {{end}}
 
@@ -140,7 +167,13 @@
 
 </body>
 
-<footer></footer>
+<footer>
+    <div>
+        <a href="">link</a>
+        <a href="">link</a>
+        <a href="">link</a>
+    </div>
+</footer>
 </html>
 
 

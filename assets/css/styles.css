@@ -65,6 +65,8 @@ thead th {
 
 
 nav div {
+  display: flex;
+  gap: 8px;
   padding-right: 8px;
 }
 
@@ -86,12 +88,13 @@ header div a {
 }
 
 footer {
-  position: fixed;
-  bottom: 5px;
-  line-height: 20px;
+  margin: auto;
+  width: 100%;
+  max-width: 624px;
+  
   border-color: #322947;
-  border-top: 1.5px solid;
-  padding: 20px 0 0 0;
+  border-top: 2px dotted;
+  padding:8px 0 0 0;
 }
 
 

@@ -8,7 +8,7 @@ If you would like to go deeper on digital gardens, check out Maggie Appleton's p
 
 ## How it started
  
- I gave myself the challenge of building a simple static site generator that would act as my personal wiki and my portfolio. I wanted it to be extremely bare bones, with as few dependencies as possible.
+ I gave myself the challenge of building a simple static site generator that would act as my personal wiki and portfolio. I wanted it to have as few dependencies as possible.
 
 At the time of creating this, I was studying Go and I discovered the html/template package and Blackfriday. I thought these tools would work well for what I wanted to do.
 
