@@ -3,11 +3,11 @@ body {
   padding: 8px;
   max-width: 624px;
   margin: auto;
-    background-color: #ffffff;
-    font-size: 16px;
-    color: #322947;
+  background-color: #ffffff;
+  font-size: 16px;
+  color: #322947;
   
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 
@@ -88,13 +88,13 @@ header div a {
 }
 
 footer {
-  margin: auto;
+  
   width: 100%;
   max-width: 624px;
   
   border-color: #322947;
   border-top: 2px dotted;
-  padding:8px 0 0 0;
+  padding: 8px 0 0 0;
 }
 
 
