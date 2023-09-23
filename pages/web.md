@@ -1,3 +1,8 @@
+---
+title: web
+description: The home page of Thomas Seeley's portfolio and wiki.
+---
+
 # I build for the Web
 
 I make websites at [wando.dev](/site/wando).

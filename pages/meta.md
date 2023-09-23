@@ -1,3 +1,8 @@
+---
+title: meta
+description: The home page of Thomas Seeley's portfolio and wiki.
+---
+
 # These pages are written using Markdown.
 
 <aside>Well, mostly Markdown. Sometimes the Markdown doesn't like to become HTML. Good thing I can write HTML directly in Markdown!</aside>

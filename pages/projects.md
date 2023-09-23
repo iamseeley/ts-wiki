@@ -1,3 +1,8 @@
+---
+title: projects
+description: The home page of Thomas Seeley's portfolio and wiki.
+---
+
 # Projects
 
 

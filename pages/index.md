@@ -1,3 +1,8 @@
+---
+title: index
+description: All of the pages on this website.
+---
+
 # All the pages!
 
 ![maui jpg](/assets/images/starvan.jpg)

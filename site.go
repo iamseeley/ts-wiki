@@ -17,8 +17,9 @@ import (
 )
 
 type Page struct {
-	Title string
-	Body  []byte
+	Title       string
+	Description string
+	Body        []byte
 }
 
 type Journal struct {
@@ -30,12 +31,30 @@ type Journal struct {
 
 func loadPageFromDirectory(directory, title string) (*Page, error) {
 	filename := directory + title + ".md"
-	body, err := os.ReadFile(filename)
+	content, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
 
-	return &Page{Title: title, Body: body}, nil
+	frontMatter, body, err := parseFrontMatter(content)
+	if err != nil {
+		return nil, err
+	}
+
+	var page Page
+
+	// Extract and set front matter data into the Page struct
+	if title, ok := frontMatter["title"].(string); ok {
+		page.Title = title
+	}
+
+	if description, ok := frontMatter["description"].(string); ok {
+		page.Description = description
+	}
+
+	page.Body = body
+
+	return &page, nil
 }
 
 func loadJournalFromDirectory(directory, title string) (*Journal, error) {
