@@ -10,7 +10,22 @@ body {
   overflow-x: hidden;
 }
 
+article {
+  padding: 8px;
+  background-color: #322947;
+  color: #ffffff;
+}
 
+article a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+article a:hover {
+  background-color: #ffffff;
+  color: #322947;
+  text-decoration: none;
+}
 
 main img {
   display: inline-block;
@@ -24,7 +39,7 @@ header div {
 }
 
 header {
-  margin: 0 0 20px;
+  margin: 0 0 8px;
 }
 
 
@@ -46,7 +61,7 @@ a {
   
 a:hover {
     background-color: #322947;
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
 }
 

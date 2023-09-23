@@ -9,19 +9,22 @@
     <link rel="shortcut icon" href="/assets/images/robo.png" type="image/png">
 </head>
 <header>
-    <a href="/site/home"><img src="/assets/images/robo.svg" ></a>
+    <a href="/site/journal">return</a>
 </header>
 <body>
 
-    <p>{{ .Date }}</p>
-
     
 
-    <main>
-        <img loading="lazy" src="{{.Image}}">
+    <!-- <img loading="lazy" src="{{.Image}}"> -->
+
+    <article>
+        <h2>{{.Title}}</h2>
+
+        <p><strong>{{ .Date }}</strong></p>
+        
         {{ .Body | markDown }}
     
-    </main>
+    </article>
 
 
 
