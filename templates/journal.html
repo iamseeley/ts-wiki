@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{.Description}}">
     <title>TS — {{.Title}}</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
     <link rel="shortcut icon" href="/assets/images/robo.png" type="image/png">
@@ -12,11 +13,15 @@
 </header>
 <body>
 
-    <p>{{ .UpdatedAt }}</p>
+    <p>{{ .Date }}</p>
 
-    <figure><img loading="lazy" src="{{.Image}}"></figure>
+    
 
-    <main>{{ .Body | markDown }}</main>
+    <main>
+        <img loading="lazy" src="{{.Image}}">
+        {{ .Body | markDown }}
+    
+    </main>
 
 
 

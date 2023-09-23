@@ -10,8 +10,6 @@ import (
 	"os"
 	"regexp"
 
-	"time"
-
 	"github.com/go-yaml/yaml"
 	"github.com/russross/blackfriday/v2"
 )
@@ -23,10 +21,11 @@ type Page struct {
 }
 
 type Journal struct {
-	Title     string
-	Body      []byte
-	Image     string
-	UpdatedAt time.Time
+	Title       string
+	Body        []byte
+	Image       string
+	Description string
+	Date        string
 }
 
 func loadPageFromDirectory(directory, title string) (*Page, error) {
@@ -80,19 +79,12 @@ func loadJournalFromDirectory(directory, title string) (*Journal, error) {
 		journal.Image = image
 	}
 
-	// if tags, ok := frontMatter["tags"].([]interface{}); ok {
-	// 	for _, tag := range tags {
-	// 		if tagStr, ok := tag.(string); ok {
-	// 			journal.Tags = append(journal.Tags, tagStr)
-	// 		}
-	// 	}
-	// }
+	if description, ok := frontMatter["description"].(string); ok {
+		journal.Description = description
+	}
 
-	if updatedAtStr, ok := frontMatter["updated_at"].(string); ok {
-		updatedAt, err := time.Parse(time.RFC3339, updatedAtStr)
-		if err == nil {
-			journal.UpdatedAt = updatedAt
-		}
+	if date, ok := frontMatter["date"].(string); ok {
+		journal.Date = date
 	}
 
 	journal.Body = body

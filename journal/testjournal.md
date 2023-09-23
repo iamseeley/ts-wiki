@@ -3,7 +3,7 @@ title: Journal Entry Title
 tags:
   - Tag1
   - Tag2
-updated_at: 2023-09-03T12:00:00Z
+date: October 8, 2023
 image: /assets/images/maui.jpg
 ---
 
