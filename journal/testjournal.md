@@ -1,5 +1,5 @@
 ---
-title: Journal Entry Title
+title: testjournal
 description: Test Journal
 
 date: October 8, 2023

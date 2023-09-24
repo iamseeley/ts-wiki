@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"regexp"
 
 	"github.com/go-yaml/yaml"
@@ -26,6 +27,32 @@ type Journal struct {
 	Image       string
 	Description string
 	Date        string
+	NextUrl     string
+	PrevUrl     string
+}
+
+var AllJournals []Journal
+var JournalMap = make(map[string]int)
+
+func loadAllJournals(directory string) {
+	AllJournals = []Journal{}
+	files, err := os.ReadDir(directory)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for i, file := range files {
+		if filepath.Ext(file.Name()) == ".md" {
+			title := file.Name()[0 : len(file.Name())-3]
+			JournalMap[title] = i
+			journal, err := loadJournalFromDirectory(directory, title)
+			if err != nil {
+				log.Printf("Could not load journal: %s", err)
+				continue
+			}
+			AllJournals = append(AllJournals, *journal)
+		}
+	}
 }
 
 func loadPageFromDirectory(directory, title string) (*Page, error) {
@@ -141,6 +168,22 @@ func journalHandler(w http.ResponseWriter, r *http.Request, title string) {
 		return
 	}
 
+	currentIndex, exists := JournalMap[title]
+	if !exists {
+		http.Error(w, "Journal not found", http.StatusNotFound)
+		return
+	}
+
+	if currentIndex > 0 {
+		prevTitle := AllJournals[currentIndex-1].Title
+		journal.PrevUrl = "/journal/" + prevTitle
+	}
+
+	if currentIndex < len(AllJournals)-1 {
+		nextTitle := AllJournals[currentIndex+1].Title
+		journal.NextUrl = "/journal/" + nextTitle
+	}
+
 	renderTemplate(w, "journal", journal)
 }
 
@@ -186,7 +229,7 @@ func main() {
 		setCacheHeaders(w, 600)
 		fs.ServeHTTP(w, r)
 	})))
-
+	loadAllJournals("journal/")
 	// http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 
 	http.HandleFunc("/site/", makeHandler(pageHandler))

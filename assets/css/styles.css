@@ -112,7 +112,13 @@ footer {
   padding: 8px 0 0 0;
 }
 
-
+.pagination {
+  width: 100%;
+  max-width: 624px;
+  padding: 8px 0 8px 0;
+  display: flex;
+  justify-content: space-between;
+}
 
 
 .portfolio-grid {
