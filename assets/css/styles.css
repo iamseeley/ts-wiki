@@ -112,6 +112,9 @@ footer {
   padding: 8px 0 0 0;
 }
 
+footer div a:hover
+  { text-decoration: none; background:white;color:black;opacity: 0.75 }
+
 .pagination {
   width: 100%;
   max-width: 624px;
