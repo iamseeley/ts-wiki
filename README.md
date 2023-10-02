@@ -17,8 +17,6 @@ At the time of creating this, I was studying Go and I discovered the html/templa
 
 So, this website is written in Go. It has two html templates, one for the site pages and one for the journal entries. The site pages and journal entries are written in Markdown and converted to HTML using Blackfriday a Markdown processor implemented in Go.
 
-Find the code here [iamseeley/ts-wiki](https://github.com/iamseeley/ts-wiki).
-
 ## How it's going
 
 I'm working on making a project template so other people can try it out!
