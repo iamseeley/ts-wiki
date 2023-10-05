@@ -3,7 +3,7 @@ title: meta
 description: The home page of Thomas Seeley's portfolio and wiki.
 ---
 
-![supernova](/assets/images/supernova.png)
+
 
 # These pages are written using Markdown.
 
@@ -70,4 +70,4 @@ greetings(Shaquille O'Neal)
 
 ### This is a regular ole image:
 
-![image](/assets/images/starvan.jpg)
+![supernova](/assets/images/supernova.png)
