@@ -160,3 +160,15 @@ footer div a:hover
     min-width: 100px;
     padding: 0;
   }
+
+	.project-container {
+		
+		padding: 16px;
+		border: 1px solid #322947;
+
+	}
+summary {
+	margin-bottom: 12px;
+
+}
+

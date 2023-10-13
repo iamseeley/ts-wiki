@@ -1,6 +1,6 @@
 ---
 title: journal
-description: The home page of Thomas Seeley's portfolio and wiki.
+description: The portal to all journal entries. 
 ---
 
 # Journal

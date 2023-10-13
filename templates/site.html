@@ -16,8 +16,8 @@
         
         <div>
         <a {{if eq .Title "home"}} class="self" {{end}} href="/site/home">home</a>
-        <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "journal") (eq .Title "collections")}} class="self"{{end}} href="/site/wiki">wiki</a>
-        <a class="clean" href="/site/projects">projects</a>
+        <a {{if or (eq .Title "wiki") (eq .Title "tseeley") (eq .Title "meta") (eq .Title "index") (eq .Title "journal") (eq .Title "collections")}} class="self"{{end}} href="/site/wiki">wiki</a>
+        <a {{if eq .Title "projects"}} class="self" {{end}} href="/site/projects">projects</a>
         <span>~</span>
         </div>
         
@@ -28,13 +28,7 @@
             <span>~</span>
             </div>
             
-        {{else if eq .Title "projects"}}
-            <div>
-            <a class="clean" href="/site/web">web</a>
-            <a class="clean" href="/site/physical">physical</a>
-            <a class="clean" href="/site/photography">photography</a>
-            <span>~</span>
-            </div>
+       
             
         {{else if eq .Title "tseeley"}}
             <div>

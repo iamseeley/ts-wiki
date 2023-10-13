@@ -1,6 +1,6 @@
 ---
 title: collections
-description: The home page of Thomas Seeley's portfolio and wiki.
+description: The collection portal, where interesting information is stored. 
 ---
 
 # Collections

@@ -1,6 +1,6 @@
 ---
 title: photography
-description: The home page of Thomas Seeley's portfolio and wiki.
+description: A gallery of Thomas' photography. 
 ---
 
 # Photography
