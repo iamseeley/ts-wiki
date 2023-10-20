@@ -15,9 +15,12 @@ Sometimes I make physical objects and take photos too.
  <details>
   <summary>Websites</summary>
   <div class="project-container">
-  <div><h3>wando-ui</h3></div>
-    <div><p>Minimal, component collection built with TypeScript and styled with Tailwind CSS.</p></div>
-    </div>
+  <div><h3>Law Firm Website</h3></div>
+        </div>
+    <div class="project-container">
+  <div><h3>Shaka Shrimp Food Truck</h3></div>
+        </div>
+
 </details> 
 
 <details>
