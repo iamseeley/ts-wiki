@@ -1,4 +1,4 @@
-# ts-wiki
+# ts-wiki (archived)
 
 ## The Portfolio and Wiki of Thomas Seeley.
 
